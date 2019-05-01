@@ -1,0 +1,41 @@
+buildscript {
+    ext.kotlin_version = '1.3.30'
+    ext.ktor_version = '1.1.5'
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+group = 'io.github.oleksiyp'
+apply plugin: 'kotlin'
+
+repositories {
+    maven { url "https://dl.bintray.com/kotlin/ktor/" }
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "io.ktor:ktor-server-netty:$ktor_version"
+    compile "io.ktor:ktor-websockets:$ktor_version"
+    compile "com.fasterxml.jackson.core:jackson-databind:2.9.5"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.5"
+    compile "ch.qos.logback:logback-classic:1.2.3"
+
+    testCompile "junit:junit:4.12"
+    testCompile "io.mockk:mockk:1.9.3"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
